@@ -1,10 +1,9 @@
-file = open("C://Users//timsc//Desktop//input1.txt", "r")
+file = open("input1.txt", "r")
 
 input_values = []
 
 for line in file:
     input_values.append(int(line))
-
 
 
 def tallerThanPredecessor(f_input):

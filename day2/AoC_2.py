@@ -1,4 +1,4 @@
-file = open("C://Users//timsc//Desktop//input2.txt", "r")
+file = open("input2.txt", "r")
 
 input_values = []
 
