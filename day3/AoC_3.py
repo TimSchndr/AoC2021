@@ -20,6 +20,7 @@ def getPowerConsumption(f_input):
     for i in range(0, numberOfBits):
         #for each bit
         
+        #the bit that will be checked
         checkNum = 1 << i
         
         #counter for bit state
@@ -30,6 +31,7 @@ def getPowerConsumption(f_input):
             #for each number in the input
             
             if(j & checkNum):
+                #the number has 1 at position checkNum
                 ones += 1
             else:
                 zeros += 1
@@ -49,6 +51,7 @@ def getPowerConsumption(f_input):
 
 def getLifeSupportRating(f_input):
     
+    #create a copied list of input to work
     oxyL = f_input.copy()
     pos = 0
     
