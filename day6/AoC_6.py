@@ -17,7 +17,7 @@ def count_fish(starting_fish, days):
     #starting number of fish
     number_of_fish = sum(curr_counts)
     
-    for days in range(days):
+    for day in range(days):
         
         new_counts = np.zeros(9)
         
@@ -35,5 +35,5 @@ def count_fish(starting_fish, days):
     
     return number_of_fish
 
-print(count_fish(input_values, 80))
-print(count_fish(input_values, 256))
+print(int(count_fish(input_values, 80)))
+print(int(count_fish(input_values, 256)))

@@ -95,7 +95,7 @@ def findOverlappingLines(vent_lines, dims):
                 x_start = min(line[0][0], line[1][0])
                 y_start = max(line[0][1], line[1][1])
             
-            for i in range(length+1):
+            for i in range(length):
                 
                 seabed[x_start+i][y_start+(direction*i)] += 1
             
