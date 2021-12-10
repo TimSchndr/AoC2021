@@ -5,10 +5,10 @@ file = open("input7.txt", "r")
 input_values = []
 
 for line in file:
-    input_values.append(list(map(int, line.split(","))))
+    input_values += (list(map(int, line.split(","))))
 
 #task one
-numbers = np.array(input_values[0])
+numbers = np.array(input_values)
 median = np.median(input_values)
 
 print(np.sum(abs(numbers-median)))
