@@ -72,6 +72,7 @@ def getDecodedSum(f_input):
         for i in range(1, 10):
             codebook[i] = []
         
+        #note trivial numbers in codebook
         for code in codings:
             
             if len(code) == 2 and codebook[1] == []:
@@ -89,6 +90,7 @@ def getDecodedSum(f_input):
             else:
                 nontrivial_codes.append(code)
 
+
         for remain in nontrivial_codes:
             
             #distinguish codes of length 6
@@ -99,24 +101,37 @@ def getDecodedSum(f_input):
                 #assume 9
                 is_nine = True
                 
-                for ch in codebook[7]:
+                #check all segments in four
+                for ch in codebook[4]:
                     if not ch in remain:
                         is_nine = False
                         break
                 
                 if is_nine:
-                    codebook[9] = list(remain)
+                    codebook[9] = sorted(list(remain))
                 else:
-                    codebook[6] = list(remain)
-            
+                    
+                    is_zero = True
+                    
+                    #check all segments in 7
+                    for ch in codebook[7]:
+                        if not ch in remain:
+                            is_zero = False
+                            break
+                    
+                    if is_zero:
+                        codebook[0] = sorted(list(remain))
+                    else:
+                        codebook[6] = sorted(list(remain))
+
             #distinguish codes of length 5
-            if len(remain) == 5:
+            elif len(remain) == 5:
                 
                 #get chars that are in 4 but not in one
                 four_no_one = []
                 
                 for ch in codebook[4]:
-                    if not ch in codebook[2]:
+                    if not ch in codebook[1]:
                         four_no_one.extend(ch)
 
                 #assume 5
@@ -128,7 +143,7 @@ def getDecodedSum(f_input):
                         break
                 
                 if is_five:
-                    codebook[5] = list(remain)
+                    codebook[5] = sorted(list(remain))
                 
                 else:
                     
@@ -140,9 +155,9 @@ def getDecodedSum(f_input):
                             is_three = False
                     
                     if is_three:
-                        codebook[3] = list(remain)
+                        codebook[3] = sorted(list(remain))
                     else:
-                        codebook[2] = list(remain)
+                        codebook[2] = sorted(list(remain))
                         
         number = ""
             
@@ -159,9 +174,7 @@ def getDecodedSum(f_input):
                 
             elif len(res) == 5:
                 checks = itemgetter(2, 3, 5)(codebook)
-                
-                print(checks)
-                    
+
                 if checks[0] == sorted(list(res)):
                     number+= "2"
                     
@@ -172,18 +185,17 @@ def getDecodedSum(f_input):
                     number += "5"
                 
             elif len(res) == 6:
-                checks = itemgetter(6, 9)(codebook)
+                checks = itemgetter(0, 6, 9)(codebook)
                     
                 if checks[0] == sorted(list(res)):
+                    number += "0"
+                elif checks[1] == sorted(list(res)):
                     number += "6"
                 else:
                     number += "9"
                     
             elif len(res) == 7:
                 number += "8"
-            
-            print(number)
-            print(results)
         
         display_output += int(number)
             
@@ -192,4 +204,4 @@ def getDecodedSum(f_input):
 print(f"if-solution {getTrivialNumbers(input_values)}")
 print(f"comprehension-solution: {shorterTrivialNumbers(input_values)}")
 
-print(getDecodedSum(input_values))
+print(f"task 2 solution: {getDecodedSum(input_values)}")
